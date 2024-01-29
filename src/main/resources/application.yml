@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://${DB_HOST:localhost}:3306/dsme
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
