@@ -1,12 +1,12 @@
 package io.nozistance.dsme.entity;
 
+import io.nozistance.dsme.util.DayOfWeek;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.DayOfWeek;
 import java.util.EnumSet;
 import java.util.Set;
 
