@@ -8,3 +8,4 @@ spring:
       ddl-auto: update
 
 uri-format: https://domstolovaya.ru/menu/?day=%s
+update-frequency: ${CRON_EX:-}
