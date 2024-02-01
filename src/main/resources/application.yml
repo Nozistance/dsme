@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://${DB_HOST:localhost}:3306/dsme
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+uri-format: https://domstolovaya.ru/menu/?day=%s
+update-frequency: ${CRON_EX:-}
+
+bot:
+  path: ${BOT_HOST}
+  name: ${BOT_USERNAME}
+  token: ${BOT_TOKEN}
