@@ -14,13 +14,14 @@ import java.time.Instant;
 @Component
 public class DataUpdatingServiceAspect {
 
-    @Around("@annotation(org.springframework.transaction.annotation.Transactional) " +
-            "&& execution(* io.nozistance.dsme.service.DataUpdatingService.updateData())")
+    @Around("execution(* io.nozistance.dsme.service.DataUpdatingService.updateData())")
     public void updateData(ProceedingJoinPoint joinPoint) throws Throwable {
+        log.info("[DSME] Updating...");
         Instant start = Instant.now();
         joinPoint.proceed();
         Instant finish = Instant.now();
         long timeElapsed = Duration.between(start, finish).toMillis();
-        log.info("Daily menus have been updated in {} ms", timeElapsed);
+        log.info("[DSME] Daily menus have been updated in {} ms", timeElapsed);
+        log.info("[DSME] Update completed.");
     }
 }
