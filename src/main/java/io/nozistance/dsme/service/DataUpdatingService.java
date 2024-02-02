@@ -8,11 +8,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.jsoup.nodes.Document;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.net.URI;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
 @Service
@@ -24,14 +24,15 @@ public class DataUpdatingService {
     private final MenuRepository menuRepository;
     private final Map<DayOfWeek, URI> uris;
 
-    @Transactional
     @Scheduled(cron = "${update-frequency}")
     public void updateData() {
         menuRepository.deleteAll();
-        uris.forEach((day, uri) -> {
-            List<Item> items = getItems(uri);
-            saveDailyMenu(day, items);
+        Map<String, Item> map = new ConcurrentHashMap<>();
+        uris.entrySet().parallelStream().forEach(e -> {
+            List<Item> items = getItems(e.getValue());
+            mergeDailyMenu(map, e.getKey(), items);
         });
+        menuRepository.saveAll(map.values());
     }
 
     private List<Item> getItems(URI uri) {
@@ -39,16 +40,18 @@ public class DataUpdatingService {
         return dataParsingService.parse(document);
     }
 
-    private void saveDailyMenu(DayOfWeek day, List<Item> items) {
-        items.forEach(item -> menuRepository
-                .findByName(item.getName())
-                .ifPresentOrElse(e -> {
-                    e.getDaysOfWeek().add(day);
-                    menuRepository.saveAndFlush(e);
-                }, () -> {
-                    item.getDaysOfWeek().clear();
-                    item.getDaysOfWeek().add(day);
-                    menuRepository.saveAndFlush(item);
-                }));
+    private void mergeDailyMenu(Map<String, Item> records,
+                                DayOfWeek day, List<Item> items) {
+        for (Item item : items) {
+            Item existing = records.get(item.getName());
+            if (existing != null) {
+                existing.getDaysOfWeek().add(day);
+                records.put(existing.getName(), existing);
+            } else {
+                item.getDaysOfWeek().clear();
+                item.getDaysOfWeek().add(day);
+                records.put(item.getName(), item);
+            }
+        }
     }
 }
