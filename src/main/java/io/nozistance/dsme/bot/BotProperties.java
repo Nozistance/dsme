@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @AllArgsConstructor
 @ConfigurationProperties("bot")
-public class BotProperties {
+class BotProperties {
 
     private final String path;
     private final String name;
