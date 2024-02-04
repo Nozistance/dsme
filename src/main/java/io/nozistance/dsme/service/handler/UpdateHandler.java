@@ -18,6 +18,7 @@ public class UpdateHandler implements Handler<Update> {
 
     @Override
     public PartialBotApiMethod<?> handle(Update update) {
+        log.debug(update.toString());
         if (update.hasMessage() && update.getMessage().hasText()) {
             return update.getMessage().isCommand()
                     ? botCommandHandler.handle(update.getMessage())
