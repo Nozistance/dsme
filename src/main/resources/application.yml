@@ -7,7 +7,7 @@ spring:
     hibernate:
       ddl-auto: update
 
-uri-format: https://domstolovaya.ru/menu/?day=%s
+uri-format: ${URI_FORMAT:https://domstolovaya.ru/menu/?day=%s}
 update-frequency: ${CRON_EX:-}
 
 bot:
