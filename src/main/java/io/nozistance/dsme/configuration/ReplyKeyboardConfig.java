@@ -3,10 +3,9 @@ package io.nozistance.dsme.configuration;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
 import java.util.List;
 
@@ -20,23 +19,15 @@ public class ReplyKeyboardConfig {
 
     @Bean
     public ReplyKeyboard dayOfWeekButtons() {
-        return new ReplyKeyboardMarkup(List.of(
-                new KeyboardRow(List.of(
-                        new KeyboardButton(MONDAY.getDay()),
-                        new KeyboardButton(TUESDAY.getDay())
-                )),
-                new KeyboardRow(List.of(
-                        new KeyboardButton(WEDNESDAY.getDay()),
-                        new KeyboardButton(THURSDAY.getDay())
-                )),
-                new KeyboardRow(List.of(
-                        new KeyboardButton(FRIDAY.getDay()),
-                        new KeyboardButton(SATURDAY.getDay())
-                )),
-                new KeyboardRow(List.of(
-                        new KeyboardButton(SUNDAY.getDay()),
-                        new KeyboardButton(textProperties.getKeyboardCancel())
-                ))
+        return new InlineKeyboardMarkup(List.of(
+                List.of(new InlineKeyboardButton(MONDAY.getDay()),
+                        new InlineKeyboardButton(TUESDAY.getDay())),
+                List.of(new InlineKeyboardButton(WEDNESDAY.getDay()),
+                        new InlineKeyboardButton(THURSDAY.getDay())),
+                List.of(new InlineKeyboardButton(FRIDAY.getDay()),
+                        new InlineKeyboardButton(SATURDAY.getDay())),
+                List.of(new InlineKeyboardButton(SUNDAY.getDay()),
+                        new InlineKeyboardButton(textProperties.getKeyboardCancel()))
         ));
     }
 }
