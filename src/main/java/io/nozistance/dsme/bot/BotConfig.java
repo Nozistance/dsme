@@ -7,7 +7,7 @@ import org.telegram.telegrambots.meta.api.methods.updates.SetWebhook;
 
 @Configuration
 @AllArgsConstructor
-public class BotConfig {
+class BotConfig {
 
     private final BotProperties botProperties;
 

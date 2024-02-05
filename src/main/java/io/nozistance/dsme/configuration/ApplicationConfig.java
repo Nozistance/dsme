@@ -4,7 +4,6 @@ import io.nozistance.dsme.util.DayOfWeek;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.data.util.Pair;
 
 import java.net.URI;
@@ -15,7 +14,6 @@ import java.util.stream.Collectors;
 
 @Configuration
 @AllArgsConstructor
-@EnableAspectJAutoProxy
 public class ApplicationConfig {
 
     private final ApplicationProperties applicationProperties;
