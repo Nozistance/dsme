@@ -1,4 +1,4 @@
-package io.nozistance.dsme.service;
+package io.nozistance.dsme.service.handler;
 
 import org.telegram.telegrambots.meta.api.interfaces.BotApiObject;
 import org.telegram.telegrambots.meta.api.methods.PartialBotApiMethod;
