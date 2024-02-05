@@ -14,3 +14,8 @@ bot:
   path: ${BOT_HOST}
   name: ${BOT_USERNAME}
   token: ${BOT_TOKEN}
+
+text:
+  keyboard-cancel: "Отмена"
+  day-keyboard: "Выберите нужный день на клавиатуре"
+  size: "Найдено %d позиций меню"

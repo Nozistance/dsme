@@ -9,4 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties("text")
 public class TextProperties {
 
+    private String keyboardCancel;
+    private String dayKeyboard;
+    private String size;
 }

@@ -1,6 +1,5 @@
 package io.nozistance.dsme.service.handler;
 
-import io.nozistance.dsme.service.Handler;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
