@@ -6,6 +6,8 @@ import io.nozistance.dsme.util.DayOfWeek;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.nodes.Document;
+import org.springframework.boot.context.event.ApplicationStartedEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,7 @@ public class DataUpdatingService {
     private final Map<DayOfWeek, URI> uris;
 
     @Scheduled(cron = "${update-frequency}")
+    @EventListener(ApplicationStartedEvent.class)
     public void updateData() {
         menuRepository.deleteAll();
         Map<String, Item> map = new ConcurrentHashMap<>();
