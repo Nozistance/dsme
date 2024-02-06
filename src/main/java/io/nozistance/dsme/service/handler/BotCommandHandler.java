@@ -6,16 +6,13 @@ import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.PartialBotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
-
-import java.util.List;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 
 @Service
 @AllArgsConstructor
 public class BotCommandHandler implements Handler<Message> {
 
-    private final List<KeyboardRow> dayOfWeekButtons;
+    private final ReplyKeyboard dayOfWeekButtons;
     private final TextProperties text;
 
     @Override
@@ -31,7 +28,7 @@ public class BotCommandHandler implements Handler<Message> {
 
     private PartialBotApiMethod<?> day(Message botCommand) {
         return SendMessage.builder()
-                .replyMarkup(new ReplyKeyboardMarkup(dayOfWeekButtons))
+                .replyMarkup(dayOfWeekButtons)
                 .chatId(botCommand.getChatId())
                 .text(text.getDayKeyboard())
                 .build();
