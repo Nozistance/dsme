@@ -10,9 +10,9 @@ spring:
 uri-format: ${URI_FORMAT:https://domstolovaya.ru/menu/?day=%s}
 update-frequency: ${CRON_EX:-}
 
-bot:
-  path: ${BOT_HOST}
-  name: ${BOT_USERNAME}
+registration:
+  domain: ${BOT_DOMAIN}
+  uri-format: https://api.telegram.org/bot%s/setWebHook
   token: ${BOT_TOKEN}
 
 text:
