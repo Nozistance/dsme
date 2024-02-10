@@ -11,6 +11,7 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
+@Builder
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,6 +31,7 @@ public class Item {
     private String price;
     private String image;
 
+    @Builder.Default
     @Column(name = "day_of_week", nullable = false)
     @ElementCollection(targetClass = DayOfWeek.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "item_days", joinColumns = @JoinColumn(name = "item_id"))
