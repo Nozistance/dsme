@@ -1,6 +1,6 @@
 package io.nozistance.dsme.service;
 
-import io.nozistance.dsme.entity.Item;
+import io.nozistance.dsme.model.Item;
 import lombok.AllArgsConstructor;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

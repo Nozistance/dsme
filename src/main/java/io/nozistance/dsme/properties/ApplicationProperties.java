@@ -1,4 +1,4 @@
-package io.nozistance.dsme.configuration;
+package io.nozistance.dsme.properties;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

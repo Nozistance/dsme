@@ -1,5 +1,6 @@
 package io.nozistance.dsme.configuration;
 
+import io.nozistance.dsme.properties.ApplicationProperties;
 import io.nozistance.dsme.util.DayOfWeek;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
