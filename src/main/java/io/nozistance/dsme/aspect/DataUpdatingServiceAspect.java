@@ -14,7 +14,7 @@ import java.time.Instant;
 @Component
 public class DataUpdatingServiceAspect {
 
-    @Around("execution(* io.nozistance.dsme.service.DataUpdatingService.updateData())")
+    @Around("execution(* io.nozistance.dsme.service.DataUpdatingService.update())")
     public void updateData(ProceedingJoinPoint joinPoint) throws Throwable {
         log.info("[DSME] Updating...");
         Instant start = Instant.now();

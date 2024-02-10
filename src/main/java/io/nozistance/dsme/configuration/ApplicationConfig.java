@@ -1,10 +1,13 @@
 package io.nozistance.dsme.configuration;
 
 import io.nozistance.dsme.properties.ApplicationProperties;
+import io.nozistance.dsme.service.DataUpdatingService;
 import io.nozistance.dsme.util.DayOfWeek;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.data.util.Pair;
 
 import java.net.URI;
@@ -14,7 +17,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Configuration
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ApplicationConfig {
 
     private final ApplicationProperties applicationProperties;
@@ -28,5 +31,11 @@ public class ApplicationConfig {
                         Pair::getFirst, p -> URI.create(p.getSecond()),
                         (x, y) -> y, () -> new EnumMap<>(DayOfWeek.class)
                 ));
+    }
+
+    @Bean
+    @Order(Integer.MIN_VALUE)
+    public ApplicationRunner dataUpdatingApplicationRunner(DataUpdatingService dataUpdatingService) {
+        return args -> dataUpdatingService.update();
     }
 }
