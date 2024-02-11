@@ -1,6 +1,5 @@
 plugins {
     java
-    idea
     id("org.springframework.boot") version "3.2.2"
     id("io.spring.dependency-management") version "1.1.4"
 }
@@ -23,11 +22,6 @@ dependencies {
     implementation("javax.xml.bind:jaxb-api:${property("jaxb-api-version")}")
     implementation("org.springframework.retry:spring-retry")
     runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
-}
-
-idea.module {
-    isDownloadJavadoc = true
-    isDownloadSources = true
 }
 
 tasks.test {
