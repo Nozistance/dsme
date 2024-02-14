@@ -1,6 +1,6 @@
 package io.nozistance.dsme.service;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.http.HttpEntity;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class RegistrationService {
 
     private final RestTemplate restTemplate;
