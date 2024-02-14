@@ -7,13 +7,15 @@ import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.URI;
+
 @Service
 @RequiredArgsConstructor
 public class RegistrationService {
 
     private final RestTemplate restTemplate;
     private final HttpEntity<?> requestEntity;
-    private final String serverUri;
+    private final URI serverUri;
 
     @EventListener(ApplicationReadyEvent.class)
     public void register() {

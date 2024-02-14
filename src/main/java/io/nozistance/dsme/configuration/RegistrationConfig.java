@@ -10,6 +10,8 @@ import org.springframework.http.MediaType;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.URI;
+
 @Configuration
 @AllArgsConstructor
 public class RegistrationConfig {
@@ -22,9 +24,9 @@ public class RegistrationConfig {
     }
 
     @Bean
-    public String serverUri() {
-        return properties.getUriFormat()
-                .formatted(properties.getToken());
+    public URI serverUri() {
+        return URI.create(properties.getUriFormat()
+                .formatted(properties.getToken()));
     }
 
     @Bean

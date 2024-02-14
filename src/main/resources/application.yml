@@ -16,6 +16,21 @@ registration:
   token: ${BOT_TOKEN}
 
 text:
-  keyboard-cancel: "Отмена"
-  day-keyboard: "Выберите нужный день на клавиатуре"
-  size: "Найдено %d позиций меню"
+  answers:
+    start: hello # TODO Start answer
+
+    keyboard-cancel: Отмена
+    keyboard-day: Выберите день, на который хотите узнать меню
+
+    search-was-found: Найдено %d позиций в меню по запросу '%s'
+    search-not-found: По запросу '%s' ничего не найдено
+
+    subscribe-already: >
+      Вы уже подписаны на ежедневную (08:00) рассылку меню.
+      Чтобы отписаться, отправьте комманду '/unsubscribe'
+    subscribe-not-yet: Вы подписались на ежедневную (08:00) рассылку меню.
+
+    unsubscribe-already: >
+      Вы не были подписаны на ежедневную (08:00) рассылку меню.
+      Чтобы подписаться, отправьте комманду '/subscribe'
+    unsubscribe-not-yet: Вы отподписались от ежедневной (08:00) рассылки меню.
