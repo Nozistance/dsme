@@ -20,7 +20,8 @@ public class SearchingHandler implements UpdateHandler {
 
     @Override
     public boolean supports(Update update) {
-        return true;
+        return update.hasMessage()
+                && update.getMessage().hasText();
     }
 
     @Override
