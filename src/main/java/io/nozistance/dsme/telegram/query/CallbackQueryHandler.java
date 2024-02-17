@@ -13,4 +13,9 @@ public interface CallbackQueryHandler extends UpdateHandler {
                 && update.getCallbackQuery().getData()
                 .startsWith(getQuery() + ":");
     }
+
+    default String args(Update update) {
+        return update.getCallbackQuery()
+                .getData().split(":")[1];
+    }
 }
