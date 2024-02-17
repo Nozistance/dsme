@@ -19,8 +19,8 @@ text:
   answers:
     start: hello # TODO Start answer
 
-    keyboard-cancel: Отмена
-    keyboard-day: Выберите день, на который хотите узнать меню
+    day-keyboard: Выберите день, на который хотите узнать меню
+    day-menu: Меню на %s
 
     search-was-found: Найдено %d позиций в меню по запросу '%s'
     search-not-found: По запросу '%s' ничего не найдено

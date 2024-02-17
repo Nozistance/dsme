@@ -25,9 +25,9 @@ public class DayCommandHandler implements CommandHandler {
     @SneakyThrows(TelegramApiException.class)
     public void handle(Update update, AbsSender sender) {
         sender.execute(new UpdateAnswer(update,
-                answers.getAnswer("keyboard-day"),
+                answers.getAnswer("day-keyboard"),
                 keyboards.doubleColumn(Arrays.stream(DayOfWeek.values())
-                        .map(d -> Pair.of(d.toString(), "day:" + d.ordinal()))
+                        .map(d -> Pair.of("" + d, "day:" + d.ordinal()))
                         .toList())
         ));
     }
