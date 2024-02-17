@@ -1,21 +1,36 @@
 spring:
   datasource:
-    url: jdbc:mariadb://${DB_HOST:localhost}:3306/dsme
+    url: jdbc:mariadb://${DB_HOST:localhost:3306}/dsme
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: update
 
-uri-format: ${URI_FORMAT:https://domstolovaya.ru/menu/?day=%s}
-update-frequency: ${CRON_EX:-}
+data-updating:
+  uri-format: ${URI_FORMAT:https://domstolovaya.ru/menu/?day=%s}
+  update-frequency: ${CRON_EX:-}
 
-bot:
-  path: ${BOT_HOST}
-  name: ${BOT_USERNAME}
+webhook:
   token: ${BOT_TOKEN}
+  url: ${BOT_URL}
 
 text:
-  keyboard-cancel: "Отмена"
-  day-keyboard: "Выберите нужный день на клавиатуре"
-  size: "Найдено %d позиций меню"
+  answers:
+    start: hello # TODO Start answer
+
+    day-keyboard: Выберите день, на который хотите узнать меню
+    day-menu: Меню на %s
+
+    search-was-found: Найдено %d позиций в меню по запросу '%s'
+    search-not-found: По запросу '%s' ничего не найдено
+
+    subscribe-already: >
+      Вы уже подписаны на ежедневную (08:00) рассылку меню.
+      Чтобы отписаться, отправьте комманду '/unsubscribe'
+    subscribe-not-yet: Вы подписались на ежедневную (08:00) рассылку меню.
+
+    unsubscribe-already: >
+      Вы не были подписаны на ежедневную (08:00) рассылку меню.
+      Чтобы подписаться, отправьте комманду '/subscribe'
+    unsubscribe-not-yet: Вы отподписались от ежедневной (08:00) рассылки меню.
