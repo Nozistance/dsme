@@ -11,7 +11,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 @SpringBootApplication
 @EnableAspectJAutoProxy
-@ConfigurationPropertiesScan
+@ConfigurationPropertiesScan("io.nozistance.dsme.properties")
 public class Application {
 
     public static void main(String[] args) {
