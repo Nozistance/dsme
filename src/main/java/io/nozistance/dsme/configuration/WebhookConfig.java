@@ -13,7 +13,10 @@ public class WebhookConfig {
 
     @Bean
     public SetWebhook setWebhook(WebhookProperties properties) {
-        return new SetWebhook(properties.getUrl());
+        return SetWebhook.builder()
+                .secretToken(properties.getSecretToken())
+                .url(properties.getUrl())
+                .build();
     }
 
     @Bean

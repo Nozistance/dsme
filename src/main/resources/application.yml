@@ -12,12 +12,15 @@ data-updating:
   update-frequency: ${CRON_EX:-}
 
 webhook:
+  secret-token: ${BOT_SECRET_TOKEN}
   token: ${BOT_TOKEN}
   url: ${BOT_URL}
 
 text:
   answers:
     start: hello # TODO Start answer
+
+    error: Внутренняя ошибка сервера
 
     day-keyboard: Выберите день, на который хотите узнать меню
     day-menu: Меню на %s

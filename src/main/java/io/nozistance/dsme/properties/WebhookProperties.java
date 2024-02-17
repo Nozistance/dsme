@@ -11,6 +11,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties("webhook")
 public class WebhookProperties {
 
+    private final String secretToken;
     private final String token;
     private final String url;
 }
