@@ -1,22 +1,23 @@
 package io.nozistance.dsme.controller;
 
-import io.nozistance.dsme.service.WebhookService;
+import io.nozistance.dsme.event.UpdateReceivedEvent;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.telegram.telegrambots.meta.api.methods.PartialBotApiMethod;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/callback")
 public class WebhookController {
 
-    private final WebhookService webhookService;
+    private final ApplicationEventPublisher publisher;
 
     @PostMapping
-    public ResponseEntity<PartialBotApiMethod<?>> onWebhookUpdateReceived(@RequestBody Update update) {
-        return ResponseEntity.of(webhookService.handle(update));
+    public void onWebhookUpdateReceived(@RequestBody Update update) {
+        publisher.publishEvent(new UpdateReceivedEvent(this, update));
     }
 }

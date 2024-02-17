@@ -1,6 +1,6 @@
-package io.nozistance.dsme.handler.command;
+package io.nozistance.dsme.telegram.command;
 
-import io.nozistance.dsme.handler.UpdateHandler;
+import io.nozistance.dsme.telegram.UpdateHandler;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 public interface CommandHandler extends UpdateHandler {

@@ -1,6 +1,6 @@
-package io.nozistance.dsme.handler.query;
+package io.nozistance.dsme.telegram.query;
 
-import io.nozistance.dsme.handler.UpdateHandler;
+import io.nozistance.dsme.telegram.UpdateHandler;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 public interface CallbackQueryHandler extends UpdateHandler {
