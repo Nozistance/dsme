@@ -13,7 +13,7 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "user")
+@Table(name = "bot_user")
 public class User {
 
     @Id
