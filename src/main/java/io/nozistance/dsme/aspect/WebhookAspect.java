@@ -12,7 +12,7 @@ import java.lang.reflect.UndeclaredThrowableException;
 @Component
 public class WebhookAspect {
 
-    @AfterThrowing(pointcut = "execution(* io.nozistance.dsme.telegram.Webhook.init()", throwing = "e")
+    @AfterThrowing(pointcut = "execution(* io.nozistance.dsme.telegram.Webhook.init())", throwing = "e")
     public void init(UndeclaredThrowableException e) {
         log.error(e.getUndeclaredThrowable().getMessage(),
                 e.getUndeclaredThrowable());

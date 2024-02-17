@@ -12,7 +12,7 @@ import java.lang.reflect.UndeclaredThrowableException;
 @Component
 public class UpdateHandlerAspect {
 
-    @AfterThrowing(pointcut = "execution(* io.nozistance.dsme.telegram.UpdateHandler+.handle(..)", throwing = "e")
+    @AfterThrowing(pointcut = "execution(* io.nozistance.dsme.telegram.UpdateHandler+.handle(..))", throwing = "e")
     public void init(UndeclaredThrowableException e) {
         log.error(e.getUndeclaredThrowable().getMessage(),
                 e.getUndeclaredThrowable());
