@@ -13,7 +13,7 @@ data-updating:
 
 webhook:
   token: ${BOT_TOKEN}
-  domain: ${BOT_URL}
+  url: ${BOT_URL}
 
 text:
   answers:
