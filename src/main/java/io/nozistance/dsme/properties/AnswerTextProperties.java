@@ -1,15 +1,15 @@
 package io.nozistance.dsme.properties;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.Map;
 
 @Getter
-@AllArgsConstructor
+@RequiredArgsConstructor
 @ConfigurationProperties("text")
-public class TextProperties {
+public class AnswerTextProperties {
 
-    private Map<String, String> answers;
+    private final Map<String, String> answers;
 }
