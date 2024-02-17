@@ -1,6 +1,6 @@
 package io.nozistance.dsme.configuration;
 
-import io.nozistance.dsme.properties.ApplicationProperties;
+import io.nozistance.dsme.properties.DataUpdatingProperties;
 import io.nozistance.dsme.service.DataUpdatingService;
 import io.nozistance.dsme.util.DayOfWeek;
 import lombok.RequiredArgsConstructor;
@@ -18,13 +18,13 @@ import java.util.stream.Collectors;
 
 @Configuration
 @RequiredArgsConstructor
-public class ApplicationConfig {
+public class DataUpdatingConfig {
 
-    private final ApplicationProperties applicationProperties;
+    private final DataUpdatingProperties dataUpdatingProperties;
 
     @Bean
     public Map<DayOfWeek, URI> uriMap() {
-        String uri = applicationProperties.getUriFormat();
+        String uri = dataUpdatingProperties.getUriFormat();
         return Arrays.stream(DayOfWeek.values())
                 .map(d -> Pair.of(d, uri.formatted(d)))
                 .collect(Collectors.toMap(

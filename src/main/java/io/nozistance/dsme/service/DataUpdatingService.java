@@ -27,7 +27,7 @@ public class DataUpdatingService {
     private final Map<DayOfWeek, URI> uris;
 
     @Transactional
-    @Scheduled(cron = "${update-frequency}")
+    @Scheduled(cron = "${data-updating.update-frequency}")
     public void update() {
         cacheService.evictAllCaches();
         menuRepository.deleteAllInBatch();

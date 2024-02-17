@@ -7,8 +7,9 @@ spring:
     hibernate:
       ddl-auto: update
 
-uri-format: ${URI_FORMAT:https://domstolovaya.ru/menu/?day=%s}
-update-frequency: ${CRON_EX:-}
+data-updating:
+  uri-format: ${URI_FORMAT:https://domstolovaya.ru/menu/?day=%s}
+  update-frequency: ${CRON_EX:-}
 
 webhook:
   token: ${BOT_TOKEN}

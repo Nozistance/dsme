@@ -1,13 +1,13 @@
 package io.nozistance.dsme.properties;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @Getter
-@AllArgsConstructor
-@ConfigurationProperties
-public class ApplicationProperties {
+@RequiredArgsConstructor
+@ConfigurationProperties("data-updating")
+public class DataUpdatingProperties {
 
     private final String uriFormat;
 }
