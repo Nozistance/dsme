@@ -1,7 +1,7 @@
 package io.nozistance.dsme.telegram;
 
 import io.nozistance.dsme.model.Item;
-import io.nozistance.dsme.service.MenuService;
+import io.nozistance.dsme.repository.MenuRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.context.annotation.Primary;
@@ -18,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SearchingHandler implements UpdateHandler {
 
-    private final MenuService menuService;
+    private final MenuRepository menuRepository;
 
     @Override
     public boolean supports(Update update) {
@@ -30,7 +30,7 @@ public class SearchingHandler implements UpdateHandler {
     @SneakyThrows(TelegramApiException.class)
     public void handle(Update update, AbsSender sender) {
         String name = update.getMessage().getText();
-        List<Item> items = menuService.searchByName(name);
+        List<Item> items = menuRepository.findByNameContaining(name);
         sender.execute(SendMessage.builder()
                 .chatId(update.getMessage().getChatId())
                 .text(items.toString())
