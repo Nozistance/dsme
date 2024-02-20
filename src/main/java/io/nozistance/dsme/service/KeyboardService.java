@@ -35,7 +35,7 @@ public class KeyboardService {
                 .build();
     }
 
-    public static <T> List<List<T>> groupToPairs(List<T> list) {
+    private <T> List<List<T>> groupToPairs(List<T> list) {
         return IntStream.iterate(0, i -> i < list.size(), i -> i + 2)
                 .mapToObj(i -> list.subList(i, Math.min(i + 2, list.size())))
                 .toList();
