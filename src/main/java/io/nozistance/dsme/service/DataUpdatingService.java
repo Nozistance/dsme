@@ -20,8 +20,8 @@ import java.util.concurrent.ConcurrentHashMap;
 @AllArgsConstructor
 public class DataUpdatingService {
 
-    private final DataFetchingService dataFetchingService;
-    private final DataParsingService dataParsingService;
+     private final DocumentFetchingService documentFetchingService;
+    private final DocumentParsingService documentParsingService;
     private final MenuRepository menuRepository;
     private final CacheService cacheService;
     private final Map<DayOfWeek, URI> uris;
@@ -40,8 +40,8 @@ public class DataUpdatingService {
     }
 
     private List<Item> getItems(URI uri) {
-        Document document = dataFetchingService.getDocument(uri);
-        return dataParsingService.parse(document);
+        Document document = documentFetchingService.getDocument(uri);
+        return documentParsingService.parse(document);
     }
 
     private void mergeDailyMenu(Map<String, Item> records, DayOfWeek day, List<Item> items) {

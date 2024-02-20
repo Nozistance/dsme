@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
-public class DataParsingService {
+public class DocumentParsingService {
 
     private static final String FILTER_SELECTOR = "div.menu__filter > span";
     private static final String DISHES_SELECTOR = "div.assortment__item.dishes";

@@ -11,9 +11,9 @@ import java.lang.reflect.UndeclaredThrowableException;
 @Slf4j
 @Aspect
 @Component
-public class DataFetchingServiceAspect {
+public class DocumentFetchingServiceAspect {
 
-    @AfterThrowing(pointcut = "execution(* io.nozistance.dsme.service.DataFetchingService.getDocument(..))", throwing = "e")
+    @AfterThrowing(pointcut = "execution(* io.nozistance.dsme.service.DocumentFetchingService.getDocument(..))", throwing = "e")
     public void getDocument(JoinPoint joinPoint, UndeclaredThrowableException e) {
         log.error("Error fetching document from URI: {}",
                 joinPoint.getArgs()[0], e.getUndeclaredThrowable());

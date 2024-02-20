@@ -14,7 +14,7 @@ import lombok.SneakyThrows;
 
 @Service
 @EnableRetry
-public class DataFetchingService {
+public class DocumentFetchingService {
 
     @SneakyThrows(IOException.class)
     @Retryable(retryFor = SocketTimeoutException.class)

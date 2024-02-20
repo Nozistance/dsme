@@ -16,16 +16,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
-class DataParsingServiceTest {
+class DocumentParsingServiceTest {
 
     @InjectMocks
-    private DataParsingService dataParsingService;
+    private DocumentParsingService documentParsingService;
 
     @Test
     void parseTest() {
         String html = "<html><body><div class=\"menu__filter\"><span data-section=\"test\">Category</span></div><div class=\"assortment__item dishes\" data-section=\"test\"><div class=\"assortment__item-title assortment__item-title--name itemLinkModal\" data-price=\"10\" data-gramm=\"100\" data-image=\"image.jpg\" data-kkal=\"200\" data-text=\"Composition\">Item Name</div></div></body></html>";
         Document document = Jsoup.parse(html);
-        List<Item> items = dataParsingService.parse(document);
+        List<Item> items = documentParsingService.parse(document);
         assertNotNull(items);
         assertFalse(items.isEmpty());
         assertThat(items.get(0)).usingRecursiveComparison()
