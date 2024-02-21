@@ -4,7 +4,6 @@ import io.nozistance.dsme.util.DayOfWeek;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.EnumSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -25,15 +24,15 @@ public class Item {
     @Column(unique = true, nullable = false)
     private String name;
     private String category;
-    private String composition;
+    private String ingredients;
     private String weight;
     private String calories;
     private String price;
     private String image;
 
-    @Builder.Default
+    @Singular("dayOfWeek")
     @Column(name = "day_of_week", nullable = false)
     @ElementCollection(targetClass = DayOfWeek.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "item_days", joinColumns = @JoinColumn(name = "item_id"))
-    private Set<DayOfWeek> daysOfWeek = EnumSet.noneOf(DayOfWeek.class);
+    private Set<DayOfWeek> daysOfWeek;
 }
