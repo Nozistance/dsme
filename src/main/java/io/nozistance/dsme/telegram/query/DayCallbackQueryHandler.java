@@ -30,7 +30,7 @@ public class DayCallbackQueryHandler implements CallbackQueryHandler {
         sender.execute(new AnswerCallbackQuery(update.getCallbackQuery().getId()));
         sender.execute(new UpdateAnswer(update, answers.getAnswer("day-menu", day),
                 keyboards.singleColumn(menuRepository.findByDaysOfWeekContains(day).stream()
-                        .map(i -> of(i.getName() + "%s | %s" + i.getPrice(), "item:" + i.getId()))
+                        .map(i -> of(i.getName() + " | " + i.getPrice(), "item:" + i.getId()))
                         .toList())));
     }
 
