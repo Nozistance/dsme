@@ -8,13 +8,15 @@ spring:
       ddl-auto: update
 
 data-updating:
-  uri-format: ${URI_FORMAT:https://domstolovaya.ru/menu/?day=%s}
   update-frequency: ${CRON_EX:-}
 
 webhook:
   secret-token: ${BOT_SECRET_TOKEN}
   token: ${BOT_TOKEN}
   url: ${BOT_URL}
+
+document-fetching:
+  uri-format: ${URI_FORMAT:https://domstolovaya.ru/menu/?day=%s}
 
 text:
   answers:

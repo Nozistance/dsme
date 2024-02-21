@@ -6,8 +6,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @Getter
 @RequiredArgsConstructor
-@ConfigurationProperties("data-updating")
-public class DataUpdatingProperties {
+@ConfigurationProperties("document-fetching")
+public class DocumentFetchingProperties {
 
     private final String uriFormat;
 }
