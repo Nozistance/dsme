@@ -6,16 +6,14 @@ import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 
-import java.lang.reflect.UndeclaredThrowableException;
-
 @Slf4j
 @Aspect
 @Component
 public class DocumentFetchingServiceAspect {
 
     @AfterThrowing(pointcut = "execution(* io.nozistance.dsme.service.impl.DocumentFetchingService.getDocument(..))", throwing = "e")
-    public void getDocument(JoinPoint joinPoint, UndeclaredThrowableException e) {
+    public void getDocument(JoinPoint joinPoint, Throwable e) {
         log.error("Error fetching document for: {}",
-                joinPoint.getArgs()[0], e.getUndeclaredThrowable());
+                joinPoint.getArgs()[0], e);
     }
 }
