@@ -20,7 +20,7 @@ public class WebhookConfig {
     }
 
     @Bean
-    public Webhook telegramBot(SetWebhook setWebhook, WebhookProperties properties) {
+    public Webhook webhook(SetWebhook setWebhook, WebhookProperties properties) {
         return new Webhook(setWebhook, "", properties.getToken(), "");
     }
 }
