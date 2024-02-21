@@ -1,11 +1,11 @@
 package io.nozistance.dsme.service;
 
 import io.nozistance.dsme.model.Item;
-import io.nozistance.dsme.util.DayOfWeek;
 
 import java.util.List;
+import java.util.function.Supplier;
 
-public interface DataSupplierService {
+@FunctionalInterface
+public interface DataSupplierService extends Supplier<List<Item>> {
 
-    List<Item> getFor(DayOfWeek dayOfWeek);
 }

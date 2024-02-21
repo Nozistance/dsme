@@ -7,10 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Service;
 
-import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 @RequiredArgsConstructor
@@ -20,14 +18,15 @@ public class DocumentDataSupplierService implements DataSupplierService {
     private final DocumentParsingService documentParsingService;
 
     @Override
-    public List<Item> getFor(DayOfWeek dayOfWeek) {
-        Map<String, Item> buffer = new HashMap<>();
-        List<Item> items = getItems(dayOfWeek);
-        items.forEach(i -> merge(buffer, i));
+    public List<Item> get() {
+        var buffer = new ConcurrentHashMap<String, Item>();
+        Arrays.stream(DayOfWeek.values()).parallel()
+                .map(this::get).flatMap(List::stream)
+                .forEach(i -> merge(buffer, i));
         return List.copyOf(buffer.values());
     }
 
-    private List<Item> getItems(DayOfWeek day) {
+    private List<Item> get(DayOfWeek day) {
         Document document = documentFetchingService.getDocument(day);
         return documentParsingService.parse(document);
     }
