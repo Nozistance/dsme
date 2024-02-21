@@ -13,9 +13,9 @@ import java.lang.reflect.UndeclaredThrowableException;
 @Component
 public class DocumentFetchingServiceAspect {
 
-    @AfterThrowing(pointcut = "execution(* io.nozistance.dsme.service.DocumentFetchingService.getDocument(..))", throwing = "e")
+    @AfterThrowing(pointcut = "execution(* io.nozistance.dsme.service.impl.DocumentFetchingService.getDocument(..))", throwing = "e")
     public void getDocument(JoinPoint joinPoint, UndeclaredThrowableException e) {
-        log.error("Error fetching document from URI: {}",
+        log.error("Error fetching document for: {}",
                 joinPoint.getArgs()[0], e.getUndeclaredThrowable());
     }
 }
