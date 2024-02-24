@@ -16,8 +16,7 @@ public class KeyboardService {
         return new InlineKeyboardMarkup(list.stream()
                 .map(this::toButton)
                 .map(List::of)
-                .toList()
-        );
+                .toList());
     }
 
     public ReplyKeyboard doubleColumn(List<Pair<String, String>> list) {
