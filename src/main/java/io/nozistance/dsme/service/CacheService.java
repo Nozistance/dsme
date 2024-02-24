@@ -14,7 +14,7 @@ public class CacheService {
 
     private final CacheManager cacheManager;
 
-    @Scheduled(cron = "${data-updating.update-frequency}")
+    @Scheduled(cron = "${data.update-frequency}")
     public void evictAllCaches() {
         cacheManager.getCacheNames().stream()
                 .map(cacheManager::getCache)
