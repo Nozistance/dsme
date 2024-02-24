@@ -2,7 +2,7 @@ package io.nozistance.dsme.telegram.command;
 
 import io.nozistance.dsme.service.AnswerTextService;
 import io.nozistance.dsme.service.KeyboardService;
-import io.nozistance.dsme.telegram.CommandAnswer;
+import io.nozistance.dsme.telegram.UpdateAnswer;
 import io.nozistance.dsme.util.DayOfWeek;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -24,7 +24,7 @@ public class DayCommandHandler implements CommandHandler {
     @Override
     @SneakyThrows(TelegramApiException.class)
     public void handle(Update update, AbsSender sender) {
-        sender.execute(new CommandAnswer(update,
+        sender.execute(new UpdateAnswer(update,
                 answers.getAnswer("day-keyboard"),
                 keyboards.doubleColumn(Arrays.stream(DayOfWeek.values())
                         .map(d -> Pair.of("" + d, "day:" + d.ordinal()))

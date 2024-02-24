@@ -8,13 +8,13 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 
 import java.util.Optional;
 
-public class CommandAnswer extends SendMessage {
+public class UpdateAnswer extends SendMessage {
 
-    public CommandAnswer(Update update, String text) {
+    public UpdateAnswer(Update update, String text) {
         this(update, text, null);
     }
 
-    public CommandAnswer(Update update, String text, ReplyKeyboard keyboard) {
+    public UpdateAnswer(Update update, String text, ReplyKeyboard keyboard) {
         setReplyMarkup(keyboard);
         setChatId(update);
         setText(text);

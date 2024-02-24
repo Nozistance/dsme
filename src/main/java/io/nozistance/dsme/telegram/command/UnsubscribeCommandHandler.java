@@ -2,7 +2,7 @@ package io.nozistance.dsme.telegram.command;
 
 import io.nozistance.dsme.service.AnswerTextService;
 import io.nozistance.dsme.service.UserService;
-import io.nozistance.dsme.telegram.CommandAnswer;
+import io.nozistance.dsme.telegram.UpdateAnswer;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
@@ -24,7 +24,7 @@ public class UnsubscribeCommandHandler implements CommandHandler {
                 ? answers.getAnswer("unsubscribe-not-yet")
                 : answers.getAnswer("unsubscribe-already");
         userService.unsubscribe(update);
-        sender.execute(new CommandAnswer(update, text));
+        sender.execute(new UpdateAnswer(update, text));
     }
 
     @Override
