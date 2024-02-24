@@ -7,14 +7,13 @@ import lombok.*;
 import java.util.Set;
 import java.util.UUID;
 
-@Entity
 @Getter
 @Setter
+@Entity
 @Builder
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "menu")
 public class Item {
 
     @Id
@@ -30,9 +29,9 @@ public class Item {
     private String price;
     private String image;
 
+    @CollectionTable
     @Singular("dayOfWeek")
-    @Column(name = "day_of_week", nullable = false)
+    @Column(nullable = false)
     @ElementCollection(targetClass = DayOfWeek.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "item_days", joinColumns = @JoinColumn(name = "item_id"))
     private Set<DayOfWeek> daysOfWeek;
 }
