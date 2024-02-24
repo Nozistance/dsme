@@ -6,8 +6,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @Getter
 @RequiredArgsConstructor
-@ConfigurationProperties("data-updating")
-public class DataUpdatingProperties {
+@ConfigurationProperties("data")
+public class DataProperties {
 
     private final String uriFormat;
 }

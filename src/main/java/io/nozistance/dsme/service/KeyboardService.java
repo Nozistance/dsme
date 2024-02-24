@@ -16,8 +16,7 @@ public class KeyboardService {
         return new InlineKeyboardMarkup(list.stream()
                 .map(this::toButton)
                 .map(List::of)
-                .toList()
-        );
+                .toList());
     }
 
     public ReplyKeyboard doubleColumn(List<Pair<String, String>> list) {
@@ -35,7 +34,7 @@ public class KeyboardService {
                 .build();
     }
 
-    public static <T> List<List<T>> groupToPairs(List<T> list) {
+    private <T> List<List<T>> groupToPairs(List<T> list) {
         return IntStream.iterate(0, i -> i < list.size(), i -> i + 2)
                 .mapToObj(i -> list.subList(i, Math.min(i + 2, list.size())))
                 .toList();

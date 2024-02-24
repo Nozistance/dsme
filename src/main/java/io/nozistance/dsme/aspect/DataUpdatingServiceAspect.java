@@ -15,13 +15,14 @@ import java.time.Instant;
 public class DataUpdatingServiceAspect {
 
     @Around("execution(* io.nozistance.dsme.service.DataUpdatingService.update())")
-    public void updateData(ProceedingJoinPoint joinPoint) throws Throwable {
+    public Object updateData(ProceedingJoinPoint joinPoint) throws Throwable {
         log.info("[DSME] Updating...");
         Instant start = Instant.now();
-        joinPoint.proceed();
+        Object result = joinPoint.proceed();
         Instant finish = Instant.now();
         long timeElapsed = Duration.between(start, finish).toMillis();
         log.info("[DSME] Daily menus have been updated in {} ms", timeElapsed);
         log.info("[DSME] Update completed.");
+        return result;
     }
 }

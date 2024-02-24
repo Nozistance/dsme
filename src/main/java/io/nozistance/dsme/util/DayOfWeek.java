@@ -1,9 +1,12 @@
 package io.nozistance.dsme.util;
 
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-@Getter
+import java.util.Arrays;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 @RequiredArgsConstructor
 public enum DayOfWeek {
 
@@ -15,7 +18,22 @@ public enum DayOfWeek {
     SATURDAY("Суббота"),
     SUNDAY("Воскресенье");
 
+    private static final Map<String, DayOfWeek> days;
+
+    static {
+        days = Arrays.stream(DayOfWeek.values())
+                .collect(Collectors.toMap(
+                        DayOfWeek::toString,
+                        Function.identity(),
+                        (x, y) -> y
+                ));
+    }
+
     private final String day;
+
+    public static DayOfWeek byName(String dayName) {
+        return days.get(dayName);
+    }
 
     @Override
     public String toString() {

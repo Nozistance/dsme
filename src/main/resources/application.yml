@@ -1,26 +1,26 @@
 spring:
-  datasource:
-    url: jdbc:mariadb://${DB_HOST:localhost:3306}/dsme
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: update
 
-data-updating:
-  uri-format: ${URI_FORMAT:https://domstolovaya.ru/menu/?day=%s}
-  update-frequency: ${CRON_EX:-}
+data:
+  update-frequency: ${CRON_EX:@midnight}
+  uri-format: ${URI_FORMAT:https://domstolovaya.ru:443/}
+  document-fetching:
+    path: ${DOCUMENT_PATH:/menu/?day=%s}
 
 webhook:
-  token: ${BOT_TOKEN}
-  url: ${BOT_URL}
-
-text:
+  registration:
+    secret-token: ${BOT_SECRET_TOKEN}
+    token: ${BOT_TOKEN}
+    url: ${BOT_URL}
   answers:
     start: hello # TODO Start answer
 
+    item-not-found: Блюдо '%s' не найдено. Возможно, вы используете устаревшее меню или блюдо было удалено из него
+
     day-keyboard: Выберите день, на который хотите узнать меню
-    day-menu: Меню на %s
+    day-menu: 'Меню - %s:'
 
     search-was-found: Найдено %d позиций в меню по запросу '%s'
     search-not-found: По запросу '%s' ничего не найдено

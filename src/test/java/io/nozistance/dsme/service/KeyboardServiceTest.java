@@ -30,7 +30,7 @@ class KeyboardServiceTest {
 
         assertEquals(pairs.size(), result.getKeyboard().size());
         for (int i = 0; i < pairs.size(); i++) {
-            InlineKeyboardButton button = result.getKeyboard().get(i).get(0);
+            InlineKeyboardButton button = result.getKeyboard().get(i).getFirst();
             assertEquals(pairs.get(i).getFirst(), button.getText());
             assertEquals(pairs.get(i).getSecond(), button.getCallbackData());
         }
@@ -48,7 +48,7 @@ class KeyboardServiceTest {
         InlineKeyboardMarkup result = (InlineKeyboardMarkup) keyboardService.doubleColumn(pairs);
 
         assertEquals(expectedRows, result.getKeyboard().size());
-        assertEquals(1, result.getKeyboard().get(result.getKeyboard().size() - 1).size());
+        assertEquals(1, result.getKeyboard().getLast().size());
         assertTrue(result.getKeyboard().stream()
                 .flatMap(List::stream)
                 .allMatch(button -> pairs.stream()

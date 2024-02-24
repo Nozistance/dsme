@@ -10,12 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
-public class HandlingConfig {
+public class WebhookServiceConfig {
 
     @Bean
-    public WebhookService webhookService(AbsSender sender,
-                                         List<UpdateHandler> handlers,
-                                         UpdateHandler defaultHandler) {
+    public WebhookService webhookService(AbsSender sender, List<UpdateHandler> handlers, UpdateHandler defaultHandler) {
         var ordered = new ArrayList<>(handlers);
         ordered.remove(defaultHandler);
         ordered.add(defaultHandler);

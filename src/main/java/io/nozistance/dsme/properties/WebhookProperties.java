@@ -8,9 +8,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @NotBlank
 @RequiredArgsConstructor
-@ConfigurationProperties("webhook")
+@ConfigurationProperties("webhook.registration")
 public class WebhookProperties {
 
+    private final String secretToken;
     private final String token;
     private final String url;
 }

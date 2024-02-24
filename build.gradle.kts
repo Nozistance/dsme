@@ -20,8 +20,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.telegram:telegrambots:${property("telegrambots-version")}")
     implementation("javax.xml.bind:jaxb-api:${property("jaxb-api-version")}")
+    implementation("org.springframework.boot:spring-boot-docker-compose:3.1.1")
     implementation("org.springframework.retry:spring-retry")
-    runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
+    runtimeOnly("org.postgresql:postgresql")
 }
 
 tasks.test {
