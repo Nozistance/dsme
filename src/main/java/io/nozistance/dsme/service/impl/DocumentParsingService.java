@@ -54,7 +54,7 @@ public class DocumentParsingService {
         info = info.attr("data-section", categories.get(category));
         info = info.attr("data-text", info.attr("data-text")
                 .replaceAll("<[^>]+>|Состав:|КБЖУ.*", "")
-                .replaceAll(" {2,}", " ")
+                .replaceAll(" {2,}|\u00A0", " ")
                 .trim());
         return info.first();
     }
