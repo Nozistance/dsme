@@ -16,7 +16,7 @@ public class DataUpdatingService {
     private final MenuRepository menuRepository;
 
     @Transactional
-    @Scheduled(cron = "${data-updating.update-frequency}")
+    @Scheduled(cron = "${data.update-frequency}")
     public void update() {
         menuRepository.deleteAllInBatch();
         var items = dataSupplierService.get();

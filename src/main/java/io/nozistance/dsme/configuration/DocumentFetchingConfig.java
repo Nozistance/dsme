@@ -1,5 +1,6 @@
 package io.nozistance.dsme.configuration;
 
+import io.nozistance.dsme.properties.DataProperties;
 import io.nozistance.dsme.properties.DocumentFetchingProperties;
 import io.nozistance.dsme.util.DayOfWeek;
 import lombok.RequiredArgsConstructor;
@@ -18,10 +19,12 @@ import java.util.stream.Collectors;
 public class DocumentFetchingConfig {
 
     private final DocumentFetchingProperties properties;
+    private final DataProperties dataProperties;
 
     @Bean
     public Map<DayOfWeek, URI> uriMap() {
-        String uri = properties.getUriFormat();
+        String format = dataProperties.getUriFormat();
+        String uri = format + properties.getPath();
         return Arrays.stream(DayOfWeek.values())
                 .map(d -> Pair.of(d, uri.formatted(d)))
                 .collect(Collectors.toMap(

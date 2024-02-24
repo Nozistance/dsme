@@ -8,7 +8,7 @@ import java.util.Map;
 
 @Getter
 @RequiredArgsConstructor
-@ConfigurationProperties("text")
+@ConfigurationProperties("webhook")
 public class AnswerTextProperties {
 
     private final Map<String, String> answers;
