@@ -1,6 +1,5 @@
 package io.nozistance.dsme.telegram.query;
 
-import io.nozistance.dsme.telegram.CallbackQueryAnswer;
 import io.nozistance.dsme.telegram.UpdateHandler;
 import lombok.SneakyThrows;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -19,8 +18,9 @@ public interface CallbackQueryHandler extends UpdateHandler {
 
     @SneakyThrows
     default void handle(Update update, AbsSender sender) {
-        sender.execute(new CallbackQueryAnswer(update));
-        answer(update, sender);
+        answer(update, sender, args(update));
+        String id = update.getCallbackQuery().getId();
+        sender.execute(new AnswerCallbackQuery(id));
     }
 
     void answer(Update update, AbsSender absSender);
