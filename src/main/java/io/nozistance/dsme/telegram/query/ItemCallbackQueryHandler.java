@@ -2,6 +2,7 @@ package io.nozistance.dsme.telegram.query;
 
 import io.nozistance.dsme.model.Item;
 import io.nozistance.dsme.repository.MenuRepository;
+import io.nozistance.dsme.service.AnswerTextService;
 import io.nozistance.dsme.service.ImageFetchingService;
 import io.nozistance.dsme.telegram.UpdateAnswer;
 import lombok.RequiredArgsConstructor;
@@ -14,8 +15,9 @@ import org.telegram.telegrambots.meta.bots.AbsSender;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.Optional;
 import java.util.UUID;
+
+import static java.util.stream.Collectors.joining;
 
 @Component
 @RequiredArgsConstructor
@@ -23,23 +25,27 @@ public class ItemCallbackQueryHandler implements CallbackQueryHandler {
 
     private final MenuRepository menuRepository;
     private final ImageFetchingService imageFetchingService;
+    private final AnswerTextService answers;
 
     @Override
     @SneakyThrows
-    public void answer(Update update, AbsSender sender) {
-        UUID itemId = UUID.fromString(args(update));
-        Optional<Item> optional = menuRepository.findById(itemId);
+    public void answer(Update update, AbsSender sender, String args) {
+        UUID itemId = UUID.fromString(args);
+        var optional = menuRepository.findById(itemId);
         if (optional.isEmpty()) return;
         Item item = optional.get();
-        if (item.getImage().isEmpty()) {
-            sender.execute(new UpdateAnswer(update, "HELLO BLYAT"));
-        } else {
+        String text = getAnswerText(item);
+        if (!item.getImage().isEmpty()) {
             var photo = getImage(item.getImage());
             sender.execute(SendPhoto.builder()
-                    .chatId(update.getCallbackQuery().getMessage().getChatId())
-                    .caption(item.getImage())
+                    .chatId(update.getCallbackQuery()
+                            .getMessage().getChatId())
+                    .parseMode("Markdown")
+                    .caption(text)
                     .photo(photo)
                     .build());
+        } else {
+            sender.execute(new UpdateAnswer(update, text));
         }
     }
 
@@ -47,6 +53,20 @@ public class ItemCallbackQueryHandler implements CallbackQueryHandler {
         byte[] bytes = imageFetchingService.fetchFrom(path);
         InputStream stream = new ByteArrayInputStream(bytes);
         return new InputFile(stream, path);
+    }
+
+    private String getAnswerText(Item item) {
+        return answers.getAnswer("item-info",
+                item.getName(),
+                item.getCategory(),
+                item.getIngredients(),
+                item.getWeight(),
+                item.getCalories(),
+                item.getPrice(),
+                item.getDaysOfWeek().stream()
+                        .sorted(Enum::compareTo)
+                        .map(Object::toString)
+                        .collect(joining(", ")));
     }
 
     @Override
