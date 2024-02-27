@@ -1,4 +1,4 @@
-package io.nozistance.dsme.model;
+package io.nozistance.dsme.entity;
 
 import io.nozistance.dsme.util.DayOfWeek;
 import jakarta.persistence.*;

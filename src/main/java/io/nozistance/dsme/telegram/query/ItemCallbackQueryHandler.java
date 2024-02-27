@@ -1,6 +1,6 @@
 package io.nozistance.dsme.telegram.query;
 
-import io.nozistance.dsme.model.Item;
+import io.nozistance.dsme.entity.Item;
 import io.nozistance.dsme.repository.MenuRepository;
 import io.nozistance.dsme.service.AnswerTextService;
 import io.nozistance.dsme.service.ImageFetchingService;

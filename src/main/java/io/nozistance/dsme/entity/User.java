@@ -1,4 +1,4 @@
-package io.nozistance.dsme.model;
+package io.nozistance.dsme.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

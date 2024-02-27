@@ -1,6 +1,6 @@
 package io.nozistance.dsme.repository;
 
-import io.nozistance.dsme.model.Item;
+import io.nozistance.dsme.entity.Item;
 import io.nozistance.dsme.util.DayOfWeek;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;

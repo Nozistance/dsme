@@ -1,6 +1,6 @@
 package io.nozistance.dsme.service.impl;
 
-import io.nozistance.dsme.model.Item;
+import io.nozistance.dsme.entity.Item;
 import io.nozistance.dsme.service.DataSupplierService;
 import io.nozistance.dsme.util.DayOfWeek;
 import lombok.RequiredArgsConstructor;
