@@ -1,6 +1,5 @@
 package io.nozistance.dsme.aspect;
 
-import io.nozistance.dsme.telegram.CallbackQueryAnswer;
 import io.nozistance.dsme.telegram.UpdateAnswer;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -22,19 +21,24 @@ public class UpdateHandlerAspect {
         AbsSender sender = (AbsSender) joinPoint.getArgs()[1];
         try {
             return joinPoint.proceed();
-        } catch (TelegramApiException e) {
-            log.error(e.getMessage());
-            return null;
+        } catch (TelegramApiException ignored) {
+
         } catch (Throwable e) {
-            try {
-                if (update.hasCallbackQuery()) {
-                    sender.execute(new CallbackQueryAnswer(update, "SERVER INTERNAL ERROR"));
-                } else {
-                    sender.execute(new UpdateAnswer(update, "SERVER INTERNAL ERROR"));
-                }
-            } catch (TelegramApiException ignored) {}
-            log.error(e.getMessage(), e);
-            return null;
+            logError(e);
+            answerError(update, sender);
         }
+        return null;
+    }
+
+    private void answerError(Update update, AbsSender sender) {
+        try {
+            sender.execute(new UpdateAnswer(update, "SERVER INTERNAL ERROR"));
+        } catch (TelegramApiException ignored) {
+
+        }
+    }
+
+    private void logError(Throwable e) {
+        log.error("Error handling Telegram update: {}", e.getMessage(), e);
     }
 }
