@@ -3,9 +3,11 @@ package io.nozistance.dsme.telegram;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Message;
+import org.telegram.telegrambots.meta.api.objects.MessageEntity;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 
+import java.util.List;
 import java.util.Optional;
 
 public class UpdateAnswer extends SendMessage {
@@ -15,6 +17,7 @@ public class UpdateAnswer extends SendMessage {
     }
 
     public UpdateAnswer(Update update, String text, ReplyKeyboard keyboard) {
+        setParseMode("Markdown");
         setReplyMarkup(keyboard);
         setChatId(update);
         setText(text);
