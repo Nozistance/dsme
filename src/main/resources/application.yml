@@ -21,8 +21,7 @@ webhook:
     day-menu: 'Меню - %s:'
 
     search-hints: 'Возможно, вы имели ввиду:'
-    search-was-found: Найдено %d позиций в меню по запросу '%s'
-    search-not-found: По запросу '%s' ничего не найдено
+    search-nothing: По названию *%s* ничего не найдено
 
     subscribe-already: >
       Вы уже подписаны на ежедневную (08:00) рассылку меню.
