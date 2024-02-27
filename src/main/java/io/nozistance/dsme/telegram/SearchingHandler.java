@@ -32,8 +32,14 @@ public class SearchingHandler implements UpdateHandler {
     @SneakyThrows(TelegramApiException.class)
     public void handle(Update update, AbsSender sender) {
         String name = update.getMessage().getText();
-        sender.execute(new UpdateAnswer(update, answers.getAnswer("search-hints"),
-                keyboards.singleColumn(menuRepository.findByNameContainingIgnoreCase(name)
-                        .stream().map(i -> of(i.getName(), "item:" + i.getId())).toList())));
+        var items = menuRepository.findByName(name);
+        if (items.isEmpty())
+            sender.execute(new UpdateAnswer(update,
+                answers.getAnswer("search-nothing", name)));
+        else sender.execute(new UpdateAnswer(update,
+                answers.getAnswer("search-hints"),
+                keyboards.singleColumn(items.stream()
+                        .map(i -> of(i.getName(), "item:" + i.getId()))
+                        .toList())));
     }
 }
