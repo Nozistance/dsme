@@ -15,6 +15,7 @@ public class UpdateAnswer extends SendMessage {
     }
 
     public UpdateAnswer(Update update, String text, ReplyKeyboard keyboard) {
+        setParseMode("Markdown");
         setReplyMarkup(keyboard);
         setChatId(update);
         setText(text);

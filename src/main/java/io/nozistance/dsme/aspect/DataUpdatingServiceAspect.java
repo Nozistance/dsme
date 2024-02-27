@@ -16,7 +16,7 @@ public class DataUpdatingServiceAspect {
 
     @Around("execution(* io.nozistance.dsme.service.DataUpdatingService.update())")
     public Object updateData(ProceedingJoinPoint joinPoint) throws Throwable {
-        log.info("[DSME] Updating...");
+        log.info("[DSME] Updating daily menu...");
         Instant start = Instant.now();
         Object result = joinPoint.proceed();
         Instant finish = Instant.now();

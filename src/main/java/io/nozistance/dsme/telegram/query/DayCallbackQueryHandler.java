@@ -10,7 +10,6 @@ import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.bots.AbsSender;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import static org.springframework.data.util.Pair.of;
 
@@ -23,9 +22,9 @@ public class DayCallbackQueryHandler implements CallbackQueryHandler {
     private final AnswerTextService answers;
 
     @Override
-    @SneakyThrows(TelegramApiException.class)
-    public void answer(Update update, AbsSender sender) {
-        DayOfWeek day = DayOfWeek.values()[Integer.parseInt(args(update))];
+    @SneakyThrows
+    public void answer(Update update, AbsSender sender, String args) {
+        DayOfWeek day = DayOfWeek.values()[Integer.parseInt(args)];
         sender.execute(new UpdateAnswer(update, answers.getAnswer("day-menu", day),
                 keyboards.singleColumn(menuRepository.findByDaysOfWeekContains(day).stream()
                         .map(i -> of(i.getName() + " | " + i.getPrice(), "item:" + i.getId()))

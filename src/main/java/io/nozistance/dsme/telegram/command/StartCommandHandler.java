@@ -1,6 +1,6 @@
 package io.nozistance.dsme.telegram.command;
 
-import io.nozistance.dsme.model.User;
+import io.nozistance.dsme.entity.User;
 import io.nozistance.dsme.service.AnswerTextService;
 import io.nozistance.dsme.service.UserService;
 import lombok.RequiredArgsConstructor;
