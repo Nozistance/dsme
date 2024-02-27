@@ -17,5 +17,5 @@ public interface MenuRepository extends JpaRepository<Item, UUID> {
     List<Item> findByDaysOfWeekContains(DayOfWeek day);
 
     @Cacheable("itemsByName")
-    List<Item> findByNameContaining(String name);
+    List<Item> findByNameContainingIgnoreCase(String name);
 }
