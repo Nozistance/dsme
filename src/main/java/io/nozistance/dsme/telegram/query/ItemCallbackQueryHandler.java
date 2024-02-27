@@ -59,10 +59,10 @@ public class ItemCallbackQueryHandler implements CallbackQueryHandler {
         return answers.getAnswer("item-info",
                 item.getName(),
                 item.getCategory(),
-                item.getIngredients(),
-                item.getWeight(),
                 item.getCalories(),
                 item.getPrice(),
+                item.getWeight(),
+                item.getIngredients(),
                 item.getDaysOfWeek().stream()
                         .sorted(Enum::compareTo)
                         .map(Object::toString)
