@@ -17,8 +17,6 @@ webhook:
   answers:
     start: hello # TODO Start answer
 
-    item-not-found: Блюдо '%s' не найдено. Возможно, вы используете устаревшее меню или блюдо было удалено из него
-
     day-keyboard: Выберите день, на который хотите узнать меню
     day-menu: 'Меню - %s:'
 
