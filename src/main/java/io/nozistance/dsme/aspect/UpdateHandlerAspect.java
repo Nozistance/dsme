@@ -10,6 +10,8 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import java.lang.reflect.UndeclaredThrowableException;
+
 @Slf4j
 @Aspect
 @Component
@@ -23,6 +25,9 @@ public class UpdateHandlerAspect {
             return joinPoint.proceed();
         } catch (TelegramApiException ignored) {
 
+        } catch (UndeclaredThrowableException e) {
+            logError(e.getUndeclaredThrowable());
+            answerError(update, sender);
         } catch (Throwable e) {
             logError(e);
             answerError(update, sender);
@@ -39,6 +44,6 @@ public class UpdateHandlerAspect {
     }
 
     private void logError(Throwable e) {
-        log.error("Error handling Telegram update: {}", e.getMessage(), e);
+        log.error("Error handling Telegram update: {}", e.getMessage());
     }
 }
