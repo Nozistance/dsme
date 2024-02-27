@@ -23,9 +23,9 @@ public class UpdateHandlerAspect {
         AbsSender sender = (AbsSender) joinPoint.getArgs()[1];
         try {
             return joinPoint.proceed();
-        } catch (TelegramApiException ignored) {
-
         } catch (UndeclaredThrowableException e) {
+            if (e.getUndeclaredThrowable() instanceof TelegramApiException)
+                return null;
             logError(e.getUndeclaredThrowable());
             answerError(update, sender);
         } catch (Throwable e) {
